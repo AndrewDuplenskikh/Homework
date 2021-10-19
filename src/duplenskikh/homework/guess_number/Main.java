@@ -18,11 +18,11 @@ public class Main {
 
     private static void guessNumber() {
         int numberToGuess = generateNumber();
-        int triesCount = 10;
+        int TRIES_COUNT = 10;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Угадайте число от 1 до 100.");
         int playersInput;
-        for (int i = 1; i <= triesCount; i++) {
+        for (int i = 1; i <= TRIES_COUNT; i++) {
             playersInput = scanner.nextInt();
             if (playersInput == numberToGuess) {
                 System.out.println("Вы выиграли!");
@@ -41,8 +41,7 @@ public class Main {
     private static int generateNumber() {
         Random random = new Random();
         int RANGE_CORRECTION = 1;
-        int range = 100;
-        int number = random.nextInt(range + RANGE_CORRECTION);
-        return number;
+        int RANGE = 100;
+        return random.nextInt(RANGE + RANGE_CORRECTION);
     }
 }
