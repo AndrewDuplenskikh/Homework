@@ -30,7 +30,6 @@ public class Main {
             }
             if (playersInput > numberToGuess) {
                 System.out.println("Введенное число больше загаданного");
-                continue;
             } else {
                 System.out.println("Введенное число меньше загаданного");
             }
