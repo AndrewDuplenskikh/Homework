@@ -41,6 +41,6 @@ public class Main {
         Random random = new Random();
         int RANGE_CORRECTION = 1;
         int RANGE = 100;
-        return random.nextInt(RANGE + RANGE_CORRECTION);
+        return random.nextInt(RANGE) + RANGE_CORRECTION;
     }
 }
