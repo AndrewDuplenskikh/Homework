@@ -76,11 +76,9 @@ public class Main {
         System.out.println(Utils.QUESTION_CAT_MESSAGE);
         String input = scan.next();
         if (!validatePlayersInput(input)) {
-            System.out.println(Utils.INPUT_ERROR_MESSAGE);
-            printMenu();
             return;
         }
-        int feederIndex = Integer.valueOf(input);
+        int feederIndex = Integer.valueOf(input) - INDEX_CORRECTION;
         if (feederIndex >= feeders.length || feederIndex < 0) {
             System.out.println(Utils.FEEDER_ERROR_MESSAGE);
             printMenu();
@@ -89,8 +87,6 @@ public class Main {
         System.out.println(Utils.QUESTION_FOOD_MESSAGE);
         input = scan.next();
         if (!validatePlayersInput(input)) {
-            System.out.println(Utils.INPUT_ERROR_MESSAGE);
-            printMenu();
             return;
         }
         int foodValue = Integer.valueOf(input);
@@ -102,8 +98,6 @@ public class Main {
         System.out.println(Utils.QUESTION_FOOD_MESSAGE);
         String input = scan.next();
         if (!validatePlayersInput(input)) {
-            System.out.println(Utils.INPUT_ERROR_MESSAGE);
-            printMenu();
             return;
         }
         int foodValue = Integer.valueOf(input);
@@ -115,8 +109,6 @@ public class Main {
         System.out.println(Utils.QUESTION_FOOD_MESSAGE);
         String input = scan.next();
         if (!validatePlayersInput(input)) {
-            System.out.println(Utils.INPUT_ERROR_MESSAGE);
-            printMenu();
             return;
         }
         int foodValue = Integer.valueOf(input);
@@ -126,6 +118,8 @@ public class Main {
 
     private static boolean validatePlayersInput(String input) {
         if (input.matches("\\D+")){
+            System.out.println(Utils.INPUT_ERROR_MESSAGE);
+            printMenu();
             return false;
         }
         return true;
