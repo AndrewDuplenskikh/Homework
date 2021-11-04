@@ -11,6 +11,9 @@ public class Utils {
             "\n 666 - Выйти";
     public static final String QUESTION_FOOD_MESSAGE = "Сколько еды положить? (Или отнять, указав отрицательное значение)";
     public static final String QUESTION_CAT_MESSAGE = "Выберите кота (введите номер миски от 1 до 7)";
-    public static final String ERROR_MESSAGE = "Такой команды не существует";
+    public static final String COMMAND_ERROR_MESSAGE = "Такой команды не существует";
+    public static final String INPUT_ERROR_MESSAGE = "Не корректный ввод";
+    public static final String FEEDER_ERROR_MESSAGE = "Такой кормушки нет";
     public static final String EXIT_MESSAGE = "До скорой встречи!";
+    public static final String LINE_BREAK = "";
 }

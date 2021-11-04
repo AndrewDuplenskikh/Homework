@@ -29,60 +29,106 @@ public class Main {
     private static final int FULL_FEEDER_VALUE = 7;
     private static final int EMPTY_FEEDER_VALUE = 0;
     private static final int INDEX_CORRECTION = 1;
+    private static Scanner scan = new Scanner(System.in);
 
     private static int[] feeders = new int[7];
 
     private static void pussyFeeder() {
         System.out.println(Utils.ENTRY_MESSAGE);
         printMenu();
-        Scanner scan = new Scanner(System.in);
         do {
-            switch (scan.nextInt()) {
-                case 1: {
-                    System.out.println(Utils.QUESTION_CAT_MESSAGE);
-                    int feederIndex = scan.nextInt() - INDEX_CORRECTION;
-                    System.out.println(Utils.QUESTION_FOOD_MESSAGE);
-                    int foodValue = scan.nextInt();
-                    feedPussy(feederIndex, foodValue);
-                    printFeedersValues();
+            switch (scan.next()) {
+                case "1": {
+                    feedSomePussyAction();
                     break;
                 }
-                case 2: {
-                    System.out.println(Utils.QUESTION_FOOD_MESSAGE);
-                    int foodValue = scan.nextInt();
-                    feedAllPussies(foodValue);
-                    printFeedersValues();
+                case "2": {
+                    feedAllPussiesAction();
                     break;
                 }
-                case 3: {
-                    System.out.println(Utils.QUESTION_FOOD_MESSAGE);
-                    int foodValue = scan.nextInt();
-                    feedEvenOrOddPussies(foodValue, true);
-                    printFeedersValues();
+                case "3": {
+                    feedEvenOrOddPussiesAction(true);
                     break;
                 }
-                case 4: {
-                    System.out.println(Utils.QUESTION_FOOD_MESSAGE);
-                    int foodValue = scan.nextInt();
-                    feedEvenOrOddPussies(foodValue, false);
-                    printFeedersValues();
+                case "4": {
+                    feedEvenOrOddPussiesAction(false);
                     break;
                 }
-                case 5: {
+                case "5": {
                     feedAllPussiesCompletely();
                     printFeedersValues();
                     break;
                 }
-                case 666: {
+                case "666": {
                     System.out.println(Utils.EXIT_MESSAGE);
                     return;
                 }
                 default: {
-                    System.out.println(Utils.ERROR_MESSAGE);
+                    System.out.println(Utils.COMMAND_ERROR_MESSAGE);
+                    printMenu();
                     break;
                 }
             }
         } while (true);
+    }
+
+    private static void feedSomePussyAction() {
+        System.out.println(Utils.QUESTION_CAT_MESSAGE);
+        String input = scan.next();
+        if (!validatePlayersInput(input)) {
+            System.out.println(Utils.INPUT_ERROR_MESSAGE);
+            printMenu();
+            return;
+        }
+        int feederIndex = Integer.valueOf(input);
+        if (feederIndex >= feeders.length || feederIndex < 0) {
+            System.out.println(Utils.FEEDER_ERROR_MESSAGE);
+            printMenu();
+            return;
+        }
+        System.out.println(Utils.QUESTION_FOOD_MESSAGE);
+        input = scan.next();
+        if (!validatePlayersInput(input)) {
+            System.out.println(Utils.INPUT_ERROR_MESSAGE);
+            printMenu();
+            return;
+        }
+        int foodValue = Integer.valueOf(input);
+        feedPussy(feederIndex, foodValue);
+        printFeedersValues();
+    }
+
+    private static void feedAllPussiesAction() {
+        System.out.println(Utils.QUESTION_FOOD_MESSAGE);
+        String input = scan.next();
+        if (!validatePlayersInput(input)) {
+            System.out.println(Utils.INPUT_ERROR_MESSAGE);
+            printMenu();
+            return;
+        }
+        int foodValue = Integer.valueOf(input);
+        feedAllPussies(foodValue);
+        printFeedersValues();
+    }
+
+    private static void feedEvenOrOddPussiesAction(boolean isEven) {
+        System.out.println(Utils.QUESTION_FOOD_MESSAGE);
+        String input = scan.next();
+        if (!validatePlayersInput(input)) {
+            System.out.println(Utils.INPUT_ERROR_MESSAGE);
+            printMenu();
+            return;
+        }
+        int foodValue = Integer.valueOf(input);
+        feedEvenOrOddPussies(foodValue, isEven);
+        printFeedersValues();
+    }
+
+    private static boolean validatePlayersInput(String input) {
+        if (input.matches("\\D+")){
+            return false;
+        }
+        return true;
     }
 
     private static void feedPussy(int index, int value) {
@@ -120,6 +166,7 @@ public class Main {
     }
 
     private static void printMenu() {
+        System.out.println(Utils.LINE_BREAK);
         System.out.println(Utils.COMMANDS_MESSAGE);
     }
 
