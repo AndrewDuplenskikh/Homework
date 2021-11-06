@@ -4,7 +4,7 @@ public class Person {
     private String name;
     private int age;
     private int salary;
-    private String companyName;
+    private static String companyName;
 
     public Person(String name, int age) {
         this.name = name;
@@ -41,11 +41,11 @@ public class Person {
         this.salary = salary;
     }
 
-    public String getCompanyName() {
+    public static String getCompanyName() {
         return companyName;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public static void setCompanyName(String companyName) {
+        companyName = companyName;
     }
 }
