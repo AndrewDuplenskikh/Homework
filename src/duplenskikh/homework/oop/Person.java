@@ -45,7 +45,7 @@ public class Person {
         return companyName;
     }
 
-    public static void setCompanyName(String companyName) {
-        companyName = companyName;
+    public static void setCompanyName(String name) {
+        companyName = name;
     }
 }

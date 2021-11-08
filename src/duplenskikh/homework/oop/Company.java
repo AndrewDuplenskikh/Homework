@@ -19,7 +19,7 @@ public class Company {
             newEmployee.salaryValidate(salary);
             staff = Arrays.copyOf(staff, staff.length + 1);
             staff[staff.length - 1] = newEmployee;
-            newEmployee.setCompanyName(this.getName());
+            Person.setCompanyName(this.getName());
             newEmployee.setSalary(salary);
         } catch (SalaryValidateException | IsPersonBelongsStaffException exception) {
             System.out.println(exception);
@@ -40,7 +40,7 @@ public class Company {
                 }
             }
             staff = newStaff;
-            person.setCompanyName("");
+            Person.setCompanyName("");
             person.setSalary(0);
         } catch (IsPersonBelongsStaffException exception) {
             System.out.println(exception);
