@@ -23,8 +23,10 @@ public class Main {
 
         google.addEmployee(adam, 2000);
         google.addEmployee(eva, 1000);
+        System.out.println(Person.getCompanyName());
         google.printStaff();
         google.removeEmployee(eva);
+        System.out.println(Person.getCompanyName());
         google.addEmployee(adam, 2000);
         google.printStaff();
         google.removeEmployee(eva);
