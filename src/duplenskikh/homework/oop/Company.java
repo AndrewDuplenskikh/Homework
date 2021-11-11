@@ -34,10 +34,11 @@ public class Company {
             Person[] newStaff = new Person[staff.length - 1];
             int newStaffIndex = 0;
             for (int i = 0; i < staff.length; i++) {
-                if (!staff[i].equals(person)) {
-                    newStaff[newStaffIndex] = staff[i];
-                    newStaffIndex++;
+                if (staff[i].equals(person)) {
+                    continue;
                 }
+                newStaff[newStaffIndex] = staff[i];
+                newStaffIndex++;
             }
             staff = newStaff;
             Person.setCompanyName("");
