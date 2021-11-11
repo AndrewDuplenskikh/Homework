@@ -1,12 +1,12 @@
 package duplenskikh.homework.oop;
 
-public class Person implements Worker{
+public class Manager implements Worker{
     private String name;
     private int age;
     private int salary;
     private String companyName;
 
-    public Person(String name, int age) {
+    public Manager(String name, int age) {
         this.name = name;
         this.age = age;
     }
@@ -24,24 +24,12 @@ public class Person implements Worker{
 
     @Override
     public void greeting() {
-        System.out.println("Hello world, my name is " + this.name + ".Im PERSON");
+        System.out.println("Hello world, my name is " + this.name + ".I'm MANAGER");
     }
 
     @Override
-    public String getName() {
-        return this.name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public int getSalary() {
-        return salary;
+    public void setCompanyName(String name) {
+        this.companyName = companyName;
     }
 
     @Override
@@ -49,12 +37,12 @@ public class Person implements Worker{
         this.salary = salary;
     }
 
-    public String getCompanyName() {
-        return this.companyName;
+    @Override
+    public String getName() {
+        return this.name;
     }
 
-    @Override
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getCompanyName() {
+        return this.companyName;
     }
 }
