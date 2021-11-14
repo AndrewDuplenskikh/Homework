@@ -16,23 +16,27 @@ package duplenskikh.homework.oop;
 
 public class Main {
     public static void main(String[] args) {
-        Person adam = new Person("adam", 22);
-        Manager eva = new Manager("eva", 18);
-        Person snake = new Person("snake", 999);
-        Company google = new Company("Google");
+        try {
+            Person adam = new Person("adam", 22);
+            Manager eva = new Manager("eva", 18);
+            Person snake = new Person("snake", 999);
+            Company google = new Company("Google");
 
-        google.addEmployee(adam, 2000);
-        google.addEmployee(eva, 1000);
-        System.out.println(adam.getCompanyName());
-        google.printStaff();
-        google.removeEmployee(eva);
-        System.out.println(eva.getCompanyName());
-        google.addEmployee(adam, 2000);
-        google.printStaff();
-        google.removeEmployee(eva);
-        google.addEmployee(snake, 666);
-        google.printStaff();
-        eva.greeting();
-        adam.greeting();
+            google.addEmployee(adam, 2000);
+            google.addEmployee(eva, 1000);
+            System.out.println(adam.getCompanyName());
+            google.printStaff();
+            google.removeEmployee(eva);
+            System.out.println(eva.getCompanyName());
+            google.addEmployee(adam, 2000);
+            google.printStaff();
+            google.removeEmployee(eva);
+            google.addEmployee(snake, 666);
+            google.printStaff();
+            eva.greeting();
+            adam.greeting();
+        } catch (IsPersonBelongsStaffException | SalaryValidateException exception) {
+            System.out.println(exception.getMessage());
+        }
     }
 }
