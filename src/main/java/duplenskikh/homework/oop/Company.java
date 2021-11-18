@@ -51,6 +51,10 @@ public class Company implements IdealCompany{
         return false;
     }
 
+    public Worker getEmployeeByIndex(int index) throws ArrayIndexOutOfBoundsException{
+        return staff[index];
+    }
+
     @Override
     public void printStaff() {
         System.out.println("Current staff list:");
