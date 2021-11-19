@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 class CompanyTest {
 
     @Test
-    void doesAddedWorkerBelongsStaff() {
+    void addEmployee() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
@@ -16,7 +16,7 @@ class CompanyTest {
     }
 
     @Test
-    void doesAddingSamePersonThrowIsPersonBelongsStaffException() {
+    void addingExistentEmployeeThrowsIsPersonBelongsStaffException() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
@@ -30,7 +30,7 @@ class CompanyTest {
     }
 
     @Test
-    void doesGettingEmployeeByWrongIndexThrowArrayIndexOutOfBoundsException() {
+    void gettingEmployeeByWrongIndexThrowsArrayIndexOutOfBoundsException() {
         Company metaDevs = new Company("MetaDevs");
         Throwable thrown = catchThrowable(() -> {
             metaDevs.getEmployeeByIndex(0);
@@ -39,7 +39,7 @@ class CompanyTest {
     }
 
     @Test
-    void doesRemovingEmployeeRemoveHim() {
+    void removeEmployee() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
@@ -53,7 +53,7 @@ class CompanyTest {
     }
 
     @Test
-    void doesRemovingRemovedEmployeeThrowIsPersonBelongsStaffException() {
+    void removingInexistentEmployeeThrowsIsPersonBelongsStaffException() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
@@ -63,6 +63,7 @@ class CompanyTest {
         Throwable thrown = catchThrowable(() -> {
             metaDevs.removeEmployee(jack);
         });
-        assertThat(thrown).isInstanceOf(IsPersonBelongsStaffException.class);
+        assertThat(thrown).isInstanceOf(IsPersonBelongsStaffException.class)
+            .hasMessage("This person is out of staff!");
     }
 }

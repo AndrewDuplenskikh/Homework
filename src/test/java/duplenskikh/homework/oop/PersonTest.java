@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 class PersonTest {
 
     @Test
-    void doesSalaryValidateThrowSalaryValidateException() {
+    void salaryValidationThrowsSalaryValidateException() {
         Worker Jack = new Person("Jack", 228);
         Throwable thrown = catchThrowable(() -> {
             Jack.salaryValidate(22);
