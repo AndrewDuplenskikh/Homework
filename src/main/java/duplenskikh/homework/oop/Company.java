@@ -3,16 +3,16 @@ package duplenskikh.homework.oop;
 import java.util.Arrays;
 
 public class Company implements IdealCompany{
-    private Worker[] staff;
+    private AbstractWorker[] staff;
     private String name;
 
     public Company(String name) {
         this.name = name;
-        this.staff = new Worker[0];
+        this.staff = new AbstractWorker[0];
     }
 
     @Override
-    public void addEmployee(Worker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException {
+    public void addEmployee(AbstractWorker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException {
         if (isPersonBelongsStaff(newEmployee)) {
             throw new IsPersonBelongsStaffException("This person is already in staff!");
         }
@@ -24,11 +24,11 @@ public class Company implements IdealCompany{
     }
 
     @Override
-    public void removeEmployee(Worker worker) throws IsPersonBelongsStaffException {
+    public void removeEmployee(AbstractWorker worker) throws IsPersonBelongsStaffException {
         if (!isPersonBelongsStaff(worker)) {
             throw new IsPersonBelongsStaffException("This person is out of staff!");
         }
-        Worker[] newStaff = new Worker[staff.length - 1];
+        AbstractWorker[] newStaff = new AbstractWorker[staff.length - 1];
         int newStaffIndex = 0;
         for (int i = 0; i < staff.length; i++) {
             if (staff[i].equals(worker)) {
@@ -42,8 +42,8 @@ public class Company implements IdealCompany{
         worker.setSalary(0);
     }
 
-    private boolean isPersonBelongsStaff(Worker worker) {
-        for (Worker employee: staff) {
+    private boolean isPersonBelongsStaff(AbstractWorker worker) {
+        for (AbstractWorker employee: staff) {
             if (employee.equals(worker)) {
                 return true;
             }
@@ -51,14 +51,14 @@ public class Company implements IdealCompany{
         return false;
     }
 
-    public Worker getEmployeeByIndex(int index) throws ArrayIndexOutOfBoundsException{
+    public AbstractWorker getEmployeeByIndex(int index) throws ArrayIndexOutOfBoundsException{
         return staff[index];
     }
 
     @Override
     public void printStaff() {
         System.out.println("Current staff list:");
-        for (Worker employee: staff) {
+        for (AbstractWorker employee: staff) {
             System.out.println(employee.getName());
         }
     }

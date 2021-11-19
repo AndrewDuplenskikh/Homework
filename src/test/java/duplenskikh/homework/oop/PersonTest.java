@@ -7,7 +7,7 @@ class PersonTest {
 
     @Test
     void salaryValidationThrowsSalaryValidateException() {
-        Worker Jack = new Person("Jack", 228);
+        Workable Jack = new Person("Jack", 228);
         Throwable thrown = catchThrowable(() -> {
             Jack.salaryValidate(22);
         });

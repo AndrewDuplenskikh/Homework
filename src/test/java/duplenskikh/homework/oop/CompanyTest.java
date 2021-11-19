@@ -7,7 +7,7 @@ class CompanyTest {
 
     @Test
     void addEmployee() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
             metaDevs.addEmployee(jack, 228);
@@ -17,7 +17,7 @@ class CompanyTest {
 
     @Test
     void addingExistentEmployeeThrowsIsPersonBelongsStaffException() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
             metaDevs.addEmployee(jack, 228);
@@ -40,7 +40,7 @@ class CompanyTest {
 
     @Test
     void removeEmployee() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
             metaDevs.addEmployee(jack, 228);
@@ -54,7 +54,7 @@ class CompanyTest {
 
     @Test
     void removingInexistentEmployeeThrowsIsPersonBelongsStaffException() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         assertThatNoException().isThrownBy(() -> {
             metaDevs.addEmployee(jack, 228);
