@@ -2,3 +2,6 @@
 Homework.iml
 /out
 /lib
+/build
+/.gradle
+/gradle
