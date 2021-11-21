@@ -1,20 +1,13 @@
 package duplenskikh.homework.oop;
 
-public class AbstractWorker implements Workable{
+public abstract class AbstractWorker implements Workable{
     private String name;
     private int age;
     private int salary;
     private String companyName;
 
-    private boolean isSalaryGreaterThanAge(int salary) {
-        return salary > this.age;
-    }
-
-    @Override
-    public void salaryValidate(int salary) throws SalaryValidateException {
-        if (!isSalaryGreaterThanAge(salary)) {
-            throw new SalaryValidateException("Age is greater than salary!");
-        }
+    protected boolean isAgeGreaterThanSalary(int salary) {
+        return salary < this.age;
     }
 
     public String getName() {

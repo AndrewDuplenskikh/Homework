@@ -6,4 +6,11 @@ public class Person extends AbstractWorker{
         this.setName(name);
         this.setAge(age);
     }
+
+    @Override
+    public void salaryValidate(int salary) throws SalaryValidateException {
+        if (isAgeGreaterThanSalary(salary)) {
+            throw new SalaryValidateException("Age is greater than salary!");
+        }
+    }
 }

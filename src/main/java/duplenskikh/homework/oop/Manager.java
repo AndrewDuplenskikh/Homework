@@ -8,6 +8,13 @@ public class Manager extends AbstractWorker {
     }
 
     @Override
+    public void salaryValidate(int salary) throws SalaryValidateException {
+        if (isAgeGreaterThanSalary(salary)) {
+            throw new SalaryValidateException("Age is greater than salary!");
+        }
+    }
+
+    @Override
     public void greeting() {
         System.out.println("Hello world, my name is " + this.getName() + ". I'm MANAGER");
     }
