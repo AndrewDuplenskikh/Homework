@@ -7,12 +7,19 @@ class PersonTest {
 
     @Test
     void salaryValidationThrowsSalaryValidateException() {
-        Worker Jack = new Person("Jack", 228);
+        Worker jack = new Person("Jack", 228);
         Throwable thrown = catchThrowable(() -> {
-            Jack.salaryValidate(22);
+            jack.salaryValidate(22);
         });
         assertThat(thrown).isInstanceOf(SalaryValidateException.class)
                 .hasMessageContaining("Age is greater than salary!");
     }
 
+    @Test
+    void salaryValidate() {
+        Worker jack = new Person("Jack", 228);
+        assertThatNoException().isThrownBy(() -> {
+            jack.salaryValidate(300);
+        });
+    }
 }
