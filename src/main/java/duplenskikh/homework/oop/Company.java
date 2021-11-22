@@ -55,7 +55,7 @@ public class Company implements IdealCompany{
     public void printStaff() {
         System.out.println("Current staff list:");
         for (Worker employee: staff) {
-            System.out.println(employee.getName());
+            employee.printName();
         }
     }
 

@@ -27,7 +27,6 @@ public class Person implements Worker{
         System.out.println("Hello world, my name is " + this.name + ".Im PERSON");
     }
 
-    @Override
     public String getName() {
         return this.name;
     }
@@ -47,6 +46,11 @@ public class Person implements Worker{
     @Override
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public void printName() {
+        System.out.println(this.name);
     }
 
     public String getCompanyName() {

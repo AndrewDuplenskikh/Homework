@@ -34,9 +34,7 @@ public interface Worker {
 
     /**
      *
-     * Геттер, реализация которого необходима для метода
-     * printStaff интерфейса IdealCompany
-     * @return возвращает имя сотрудника
+     * Метод вывода имени сотрудника
      */
-    String getName();
+    void printName();
 }
