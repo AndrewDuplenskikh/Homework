@@ -9,61 +9,47 @@ class CompanyTest {
     void addEmployee() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
-        assertThatNoException().isThrownBy(() -> {
-            metaDevs.addEmployee(jack, 228);
-        });
-        assertThat(metaDevs.getEmployeeByIndex(0)).isEqualTo(jack);
+        metaDevs.addEmployee(jack, 228);
+        assertThat(metaDevs.employeeByName("Jack")).isEqualTo(jack);
     }
 
     @Test
     void addingExistentEmployeeThrowsIsPersonBelongsStaffException() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
-        assertThatNoException().isThrownBy(() -> {
+        metaDevs.addEmployee(jack, 228);
+        assertThatExceptionOfType(PersonBelongsStaffException.class).isThrownBy(() -> {
             metaDevs.addEmployee(jack, 228);
         });
-        Throwable thrown = catchThrowable(() -> {
-            metaDevs.addEmployee(jack, 228);
-        });
-        assertThat(thrown).isInstanceOf(IsPersonBelongsStaffException.class)
-                .hasMessageContaining("This person is already in staff!");
     }
 
     @Test
     void gettingEmployeeByWrongIndexThrowsArrayIndexOutOfBoundsException() {
         Company metaDevs = new Company("MetaDevs");
-        Throwable thrown = catchThrowable(() -> {
-            metaDevs.getEmployeeByIndex(0);
+        assertThatExceptionOfType(WorkerNotFoundException.class).isThrownBy(() -> {
+            metaDevs.employeeByName("petya");
         });
-        assertThat(thrown).isInstanceOf(ArrayIndexOutOfBoundsException.class);
     }
 
     @Test
     void removeEmployee() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
-        assertThatNoException().isThrownBy(() -> {
-            metaDevs.addEmployee(jack, 228);
-            metaDevs.removeEmployee(jack);
+        metaDevs.addEmployee(jack, 228);
+        metaDevs.removeEmployee(jack);
+        assertThatExceptionOfType(WorkerNotFoundException.class).isThrownBy(() -> {
+            metaDevs.employeeByName("Jack");
         });
-        Throwable thrown = catchThrowable(() -> {
-            metaDevs.getEmployeeByIndex(0);
-        });
-        assertThat(thrown).isInstanceOf(ArrayIndexOutOfBoundsException.class);
     }
 
     @Test
     void removingInexistentEmployeeThrowsIsPersonBelongsStaffException() {
         Worker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
-        assertThatNoException().isThrownBy(() -> {
-            metaDevs.addEmployee(jack, 228);
+        metaDevs.addEmployee(jack, 228);
+        metaDevs.removeEmployee(jack);
+        assertThatExceptionOfType(WorkerNotFoundException.class).isThrownBy(() -> {
             metaDevs.removeEmployee(jack);
         });
-        Throwable thrown = catchThrowable(() -> {
-            metaDevs.removeEmployee(jack);
-        });
-        assertThat(thrown).isInstanceOf(IsPersonBelongsStaffException.class)
-            .hasMessage("This person is out of staff!");
     }
 }

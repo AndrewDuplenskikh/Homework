@@ -2,7 +2,7 @@ package duplenskikh.homework.oop;
 
 import java.util.Arrays;
 
-public class Company implements IdealCompany{
+public class Company implements IdealCompany {
     private Worker[] staff;
     private String name;
 
@@ -12,9 +12,9 @@ public class Company implements IdealCompany{
     }
 
     @Override
-    public void addEmployee(Worker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException {
-        if (isPersonBelongsStaff(newEmployee)) {
-            throw new IsPersonBelongsStaffException("This person is already in staff!");
+    public void addEmployee(Worker newEmployee, int salary) {
+        if (existsByName(newEmployee.getName())) {
+            throw new PersonBelongsStaffException("This person is already in staff!");
         }
         newEmployee.salaryValidate(salary);
         staff = Arrays.copyOf(staff, staff.length + 1);
@@ -24,9 +24,9 @@ public class Company implements IdealCompany{
     }
 
     @Override
-    public void removeEmployee(Worker worker) throws IsPersonBelongsStaffException {
-        if (!isPersonBelongsStaff(worker)) {
-            throw new IsPersonBelongsStaffException("This person is out of staff!");
+    public void removeEmployee(Worker worker) {
+        if (!existsByName(worker.getName())) {
+            throw new WorkerNotFoundException(String.format("Could not found worker by name: %s", worker.getName()));
         }
         Worker[] newStaff = new Worker[staff.length - 1];
         int newStaffIndex = 0;
@@ -42,24 +42,29 @@ public class Company implements IdealCompany{
         worker.setSalary(0);
     }
 
-    private boolean isPersonBelongsStaff(Worker worker) {
-        for (Worker employee: staff) {
-            if (employee.equals(worker)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public Worker getEmployeeByIndex(int index) throws ArrayIndexOutOfBoundsException{
-        return staff[index];
-    }
-
     @Override
     public void printStaff() {
         System.out.println("Current staff list:");
-        for (Worker employee: staff) {
+        for (Worker employee : staff) {
             System.out.println(employee.getName());
+        }
+    }
+
+    @Override
+    public Worker employeeByName(String name) {
+        for (Worker employee : staff) {
+            if (employee.getName().equals(name)) return employee;
+        }
+        throw new WorkerNotFoundException(String.format("Could not found worker by name: %s", name));
+    }
+
+    //метод нам не очень нравится, но мы хотим показать знания try/catch (С) Федор
+    private boolean existsByName(String name) {
+        try {
+            employeeByName(name);
+            return true;
+        } catch (WorkerNotFoundException exception) {
+            return false;
         }
     }
 

@@ -29,7 +29,7 @@ public class Main {
             google.printStaff();
             eva.greeting();
             adam.greeting();
-        } catch (IsPersonBelongsStaffException | SalaryValidateException exception) {
+        } catch (PersonBelongsStaffException | SalaryValidateException exception) {
             System.out.println(exception.getMessage());
         }
     }

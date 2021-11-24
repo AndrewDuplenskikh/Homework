@@ -1,6 +1,6 @@
 package duplenskikh.homework.oop;
 
-public class SalaryValidateException extends Exception {
+public class SalaryValidateException extends IllegalArgumentException {
     public SalaryValidateException() {
 
     }
