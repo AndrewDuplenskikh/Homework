@@ -41,4 +41,11 @@ public abstract class AbstractWorker implements Workable{
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
+
+    @Override
+    public void salaryValidate(int salary) throws SalaryValidateException {
+        if (isAgeGreaterThanSalary(salary)) {
+            throw new SalaryValidateException("Age is greater than salary!");
+        }
+    }
 }
