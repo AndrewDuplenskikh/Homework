@@ -35,13 +35,13 @@ public class CustomArrayList<T> implements List {
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
+    public void add(int index, Object element) {
+
     }
 
     @Override
-    public void add(int index, Object element) {
-
+    public boolean remove(Object o) {
+        return false;
     }
 
     @Override
