@@ -61,7 +61,24 @@ public class Company implements IdealCompany{
         System.out.println("Current staff list:");
         for (AbstractWorker employee: staff) {
             System.out.println(employee.getName());
+        }
+    }
 
+    @Override
+    public AbstractWorker employeeByName(String name) {
+        for (AbstractWorker employee : staff) {
+            if (employee.getName().equals(name)) return employee;
+        }
+        throw new WorkerNotFoundException(String.format("Could not found worker by name: %s", name));
+    }
+
+    //метод нам не очень нравится, но мы хотим показать знания try/catch (С) Федор
+    private boolean existsByName(String name) {
+        try {
+            employeeByName(name);
+            return true;
+        } catch (WorkerNotFoundException exception) {
+            return false;
         }
     }
 
