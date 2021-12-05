@@ -10,7 +10,7 @@ public interface IdealCompany {
      * @throws PersonBelongsStaffException
      * @throws SalaryValidateException
      */
-    void addEmployee(AbstractWorker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException;
+    void addEmployee(AbstractWorker newEmployee, int salary) throws PersonBelongsStaffException, SalaryValidateException;
 
 
     /**
@@ -19,7 +19,7 @@ public interface IdealCompany {
      * @param worker увольняемый работник
      * @throws PersonBelongsStaffException
      */
-    void removeEmployee(AbstractWorker worker) throws IsPersonBelongsStaffException;
+    void removeEmployee(AbstractWorker worker) throws PersonBelongsStaffException;
 
 
     /**
@@ -33,5 +33,5 @@ public interface IdealCompany {
      * @param name - имя работника
      * @return возвращается работник
      */
-    Worker employeeByName(String name);
+    AbstractWorker employeeByName(String name);
 }

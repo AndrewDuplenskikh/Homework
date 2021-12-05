@@ -12,9 +12,9 @@ public class Company implements IdealCompany{
     }
 
     @Override
-    public void addEmployee(AbstractWorker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException {
+    public void addEmployee(AbstractWorker newEmployee, int salary) {
         if (isPersonBelongsStaff(newEmployee)) {
-            throw new IsPersonBelongsStaffException("This person is already in staff!");
+            throw new PersonBelongsStaffException("This person is already in staff!");
         }
         newEmployee.salaryValidate(salary);
         staff = Arrays.copyOf(staff, staff.length + 1);
@@ -24,9 +24,9 @@ public class Company implements IdealCompany{
     }
 
     @Override
-    public void removeEmployee(AbstractWorker worker) throws IsPersonBelongsStaffException {
+    public void removeEmployee(AbstractWorker worker) {
         if (!isPersonBelongsStaff(worker)) {
-            throw new IsPersonBelongsStaffException("This person is out of staff!");
+            throw new PersonBelongsStaffException("This person is out of staff!");
         }
         AbstractWorker[] newStaff = new AbstractWorker[staff.length - 1];
         int newStaffIndex = 0;
@@ -52,7 +52,7 @@ public class Company implements IdealCompany{
         return false;
     }
 
-    public AbstractWorker getEmployeeByIndex(int index) throws ArrayIndexOutOfBoundsException{
+    public AbstractWorker getEmployeeByIndex(int index) {
         return staff[index];
     }
 
