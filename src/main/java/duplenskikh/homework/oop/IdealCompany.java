@@ -10,7 +10,8 @@ public interface IdealCompany {
      * @throws IsPersonBelongsStaffException
      * @throws SalaryValidateException
      */
-    void addEmployee(Worker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException;
+    void addEmployee(AbstractWorker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException;
+
 
     /**
      *
@@ -18,7 +19,8 @@ public interface IdealCompany {
      * @param worker увольняемый работник
      * @throws IsPersonBelongsStaffException
      */
-    void removeEmployee(Worker worker) throws IsPersonBelongsStaffException;
+    void removeEmployee(AbstractWorker worker) throws IsPersonBelongsStaffException;
+
 
     /**
      *
