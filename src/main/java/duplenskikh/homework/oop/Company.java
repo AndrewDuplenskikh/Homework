@@ -44,6 +44,7 @@ public class Company implements IdealCompany{
 
     private boolean isPersonBelongsStaff(AbstractWorker worker) {
         for (AbstractWorker employee: staff) {
+
             if (employee.equals(worker)) {
                 return true;
             }
@@ -60,6 +61,7 @@ public class Company implements IdealCompany{
         System.out.println("Current staff list:");
         for (AbstractWorker employee: staff) {
             System.out.println(employee.getName());
+
         }
     }
 

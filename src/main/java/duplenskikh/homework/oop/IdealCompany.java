@@ -12,6 +12,7 @@ public interface IdealCompany {
      */
     void addEmployee(AbstractWorker newEmployee, int salary) throws IsPersonBelongsStaffException, SalaryValidateException;
 
+
     /**
      *
      * Метод увольнения работника
@@ -19,6 +20,7 @@ public interface IdealCompany {
      * @throws IsPersonBelongsStaffException
      */
     void removeEmployee(AbstractWorker worker) throws IsPersonBelongsStaffException;
+
 
     /**
      *

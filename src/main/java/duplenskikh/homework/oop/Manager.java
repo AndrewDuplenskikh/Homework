@@ -12,6 +12,7 @@ public class Manager extends AbstractWorker {
     @Override
     public void salaryValidate(int salary) throws SalaryValidateException {
         if (salary < getAge() * SALARY_COEFFICIENT) {
+
             throw new SalaryValidateException("Age is greater than salary!");
         }
     }
