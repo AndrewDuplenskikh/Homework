@@ -4,17 +4,19 @@ import java.util.Arrays;
 
 public class Company implements IdealCompany {
     private Worker[] staff;
+
     private String name;
 
     public Company(String name) {
         this.name = name;
-        this.staff = new Worker[0];
+        this.staff = new AbstractWorker[0];
     }
 
     @Override
     public void addEmployee(Worker newEmployee, int salary) {
         if (existsByName(newEmployee.getName())) {
             throw new PersonBelongsStaffException("This person is already in staff!");
+
         }
         newEmployee.salaryValidate(salary);
         staff = Arrays.copyOf(staff, staff.length + 1);
@@ -27,8 +29,9 @@ public class Company implements IdealCompany {
     public void removeEmployee(Worker worker) {
         if (!existsByName(worker.getName())) {
             throw new WorkerNotFoundException(String.format("Could not found worker by name: %s", worker.getName()));
+
         }
-        Worker[] newStaff = new Worker[staff.length - 1];
+        AbstractWorker[] newStaff = new AbstractWorker[staff.length - 1];
         int newStaffIndex = 0;
         for (int i = 0; i < staff.length; i++) {
             if (staff[i].equals(worker)) {
@@ -47,6 +50,7 @@ public class Company implements IdealCompany {
         System.out.println("Current staff list:");
         for (Worker employee : staff) {
             System.out.println(employee.getName());
+
         }
     }
 
@@ -65,6 +69,7 @@ public class Company implements IdealCompany {
             return true;
         } catch (WorkerNotFoundException exception) {
             return false;
+
         }
     }
 

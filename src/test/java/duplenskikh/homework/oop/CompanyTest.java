@@ -7,7 +7,7 @@ class CompanyTest {
 
     @Test
     void addEmployee() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         metaDevs.addEmployee(jack, 228);
         assertThat(metaDevs.employeeByName("Jack")).isEqualTo(jack);
@@ -15,7 +15,7 @@ class CompanyTest {
 
     @Test
     void addingExistentEmployeeThrowsIsPersonBelongsStaffException() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         metaDevs.addEmployee(jack, 228);
         assertThatExceptionOfType(PersonBelongsStaffException.class).isThrownBy(() -> {
@@ -33,7 +33,7 @@ class CompanyTest {
 
     @Test
     void removeEmployee() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         metaDevs.addEmployee(jack, 228);
         metaDevs.removeEmployee(jack);
@@ -44,7 +44,7 @@ class CompanyTest {
 
     @Test
     void removingInexistentEmployeeThrowsIsPersonBelongsStaffException() {
-        Worker jack = new Person("Jack", 22);
+        AbstractWorker jack = new Person("Jack", 22);
         Company metaDevs = new Company("MetaDevs");
         metaDevs.addEmployee(jack, 228);
         metaDevs.removeEmployee(jack);
