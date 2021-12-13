@@ -56,7 +56,8 @@ public class CustomArrayList<T> implements List<T> {
         if (size == array.length) {
             array = Arrays.copyOf(array, (int) ((array.length*1.5) + 1));
         }
-        array[size++] = element;
+        array[size] = element;
+        size++;
         return true;
     }
 
@@ -72,6 +73,7 @@ public class CustomArrayList<T> implements List<T> {
             array[i] = array[i - 1];
         }
         array[index] = element;
+        size++;
     }
 
     @Override
