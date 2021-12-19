@@ -1,34 +1,58 @@
 package duplenskikh.homework.custom_array_list;
 
 import java.util.*;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
 
-@SuppressWarnings("unchecked")
 public class CustomArrayList<T> implements List<T> {
     private int size;
-    private Object[] array;
+    private T[] array;
+    private static final int DEFAULT_ARRAY_LENGTH = 10;
 
     public CustomArrayList() {
-        this.array = new Object[10];
+        this.array = (T[]) new Object[DEFAULT_ARRAY_LENGTH];
         this.size = 0;
     }
 
     public CustomArrayList(int length) {
-        this.array = new Object[length];
+        this.array = (T[]) new Object[length];
         this.size = 0;
     }
 
-    public CustomArrayList(Object[] array) {
-        this.array = Arrays.copyOf(array, array.length);
+    public CustomArrayList(T[] array) {
+        this.array = copyOf(array);
         this.size = array.length;
     }
 
-    public CustomArrayList(CustomArrayList arrayList) {
-        array = Arrays.copyOf(arrayList.array, arrayList.size, arrayList.array.getClass());
+    public CustomArrayList(CustomArrayList<T> arrayList) {
+        this.array = copyOf(arrayList.array);
         this.size = arrayList.size;
+    }
+
+    private T[] copyOf(T[] arr) {
+        return copyOf(arr, arr.length);
+    }
+
+    private T[] copyOf(T[] arr, int newLength) {
+        if (arr.length > newLength) {
+            throw new IllegalArgumentException("New array length cannot be more than present array length.");
+        }
+        T[] resultArray = (T[]) new Object[newLength];
+        for (int i = 0; i < arr.length; i++) {
+            resultArray[i] = arr[i];
+        };
+        return resultArray;
+    }
+
+    private T[] copyOfRange(T[] arr, int fromIndex, int toIndex) {
+        if (fromIndex > toIndex || fromIndex < 0 || toIndex > arr.length) {
+            throw new IllegalArgumentException("Wrong arguments.");
+        }
+        T[] resultArray = (T[]) new Object[toIndex - fromIndex];
+        int j = 0;
+        for (int i = fromIndex; i < toIndex; i++) {
+            resultArray[j] = arr[i];
+            j++;
+        };
+        return resultArray;
     }
 
     @Override
@@ -54,7 +78,7 @@ public class CustomArrayList<T> implements List<T> {
     @Override
     public boolean add(T element) {
         if (size == array.length) {
-            array = Arrays.copyOf(array, (int) ((array.length*1.5) + 1));
+            array = copyOf(array, (int) ((array.length*1.5) + 1));
         }
         array[size] = element;
         size++;
@@ -67,7 +91,7 @@ public class CustomArrayList<T> implements List<T> {
             throw new IndexOutOfBoundsException("Wrong argument: index");
         }
         if (size == array.length) {
-            array = Arrays.copyOf(array, (int) ((array.length*1.5) + 1));
+            array = copyOf(array, (int) ((array.length*1.5) + 1));
         }
         for (int i = size; i > index; i--) {
             array[i] = array[i - 1];
@@ -101,7 +125,7 @@ public class CustomArrayList<T> implements List<T> {
         if (index > size - 1) {
             throw new IndexOutOfBoundsException("Wrong argument: index");
         }
-        T element = (T) array[index];
+        T element = array[index];
         for (int i = index; i < size - 1; i++) {
             array[i] = array[i + 1];
         }
@@ -112,13 +136,13 @@ public class CustomArrayList<T> implements List<T> {
 
     @Override
     public CustomArrayList<T> subList(int fromIndex, int toIndex) {
-        Object[] newArray = Arrays.copyOfRange(array, fromIndex, toIndex);
-        return new CustomArrayList<T>(newArray);
+        T[] newArray = copyOfRange(array, fromIndex, toIndex);
+        return new <T>CustomArrayList(newArray);
     }
 
     @Override
     public T get(int index) {
-        return (T) array[index];
+        return array[index];
     }
 
     //region another methods to implement

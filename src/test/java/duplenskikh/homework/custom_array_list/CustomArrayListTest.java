@@ -4,38 +4,37 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-@SuppressWarnings("unchecked")
 class CustomArrayListTest {
 
     @Test
     void sizeShouldBeEqualAddedElementsCount() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         customArrayList.add("message");
         assertThat(customArrayList.size()).isEqualTo(1);
     }
 
     @Test
     void emptyCustomArrayListSizeShouldBeZero() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         assertThat(customArrayList.size()).isEqualTo(0);
     }
 
     @Test
     void emptyCustomArrayListShouldBeEmpty() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         assertThat(customArrayList.isEmpty()).isEqualTo(true);
     }
 
     @Test
     void filledCustomArrayListShouldNotBeEmpty() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         customArrayList.add("message");
         assertThat(customArrayList.isEmpty()).isEqualTo(false);
     }
 
     @Test
     void customArrayListShouldContainSpecifiedElement() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string = "message";
         customArrayList.add(string);
         assertThat(customArrayList.contains(string)).isEqualTo(true);
@@ -44,7 +43,7 @@ class CustomArrayListTest {
 
     @Test
     void customArrayListShouldNotContainInexistentElement() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string1 = "message";
         String string2 = "another";
         customArrayList.add(string1);
@@ -53,7 +52,7 @@ class CustomArrayListTest {
 
     @Test
     void addedByIndexElementShouldHaveSpecifiedIndex() {
-        CustomArrayList customArrayList = new CustomArrayList<String>(new String[]{"first", "third"});
+        CustomArrayList<String> customArrayList = new CustomArrayList<>(new String[]{"first", "third"});
         String string = "second";
         customArrayList.add(1, string);
         assertThat(customArrayList.indexOf(string)).isEqualTo(1);
@@ -61,7 +60,7 @@ class CustomArrayListTest {
 
     @Test
     void addingByWrongIndexShouldThrowIndexOutOfBoundsException() {
-        CustomArrayList customArrayList = new CustomArrayList<String>(new String[]{"first"});
+        CustomArrayList<String> customArrayList = new CustomArrayList<>(new String[]{"first"});
         String string = "third";
         assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
             customArrayList.add(2, string);
@@ -70,7 +69,7 @@ class CustomArrayListTest {
 
     @Test
     void customArrayListShouldNotContainRemovedElement() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string = "message";
         customArrayList.add(string);
         customArrayList.remove(string);
@@ -80,7 +79,7 @@ class CustomArrayListTest {
 
     @Test
     void customArrayListShouldNotContainRemovedByIndexElement() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string1 = "first";
         String string2 = "second";
         customArrayList.add(string1);
@@ -92,7 +91,7 @@ class CustomArrayListTest {
 
     @Test
     void removingByWrongIndexShouldThrowIndexOutOfBoundsException() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string = "message";
         customArrayList.add(string);
         assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
@@ -102,8 +101,8 @@ class CustomArrayListTest {
 
     @Test
     void subList() {
-        CustomArrayList customArrayList = new CustomArrayList<String>();
-        CustomArrayList subList;
+        CustomArrayList<String> customArrayList = new CustomArrayList<>();
+        CustomArrayList<String> subList;
         String string1 = "first";
         String string2 = "second";
         String string3 = "third";

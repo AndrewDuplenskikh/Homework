@@ -6,30 +6,65 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 10, time = 1)
-@Measurement(iterations = 70, time = 1, timeUnit = TimeUnit.MICROSECONDS)
-@OutputTimeUnit(TimeUnit.MICROSECONDS)
+@Measurement(iterations = 50, time = 10, timeUnit = TimeUnit.MILLISECONDS)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class CompareRemove {
+    /**
+     * Тест:
+     * 1. В каждом тесте создаем 3 массива различной длины.
+     * 2. Заполняем их.
+     * 3. В первом тесте - работаем с первым массивом, удаляем последний элемент.
+     * 4. Во втором - тоже самое со вторым массивом. В третьем - третий массив.
+     * 5. Получаем результаты (время выполнения метода) и соотносим со сложностью (O(n)).
+     */
     @Benchmark
-    public void removeElement20() {
-        CustomArrayList customArrayList1 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20});
-        CustomArrayList customArrayList2 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40});
-        CustomArrayList customArrayList3 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60});
-        customArrayList1.remove(new Integer(20));
+    public void removeElement1000() {
+        CustomArrayList<String> customArrayList1 = new CustomArrayList(1000);
+        for (int i = 0; i < 999; i++) {
+            customArrayList1.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList2 = new CustomArrayList(100000);
+        for (int i = 0; i < 99999; i++) {
+            customArrayList2.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList3 = new CustomArrayList(1000000);
+        for (int i = 0; i < 999999; i++) {
+            customArrayList3.add(String.valueOf(i));
+        }
+        customArrayList1.remove(String.valueOf(999));
     }
 
     @Benchmark
-    public void removeElement40() {
-        CustomArrayList customArrayList1 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20});
-        CustomArrayList customArrayList2 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40});
-        CustomArrayList customArrayList3 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60});
-        customArrayList2.remove(new Integer(40));
+    public void removeElement100000() {
+        CustomArrayList<String> customArrayList1 = new CustomArrayList(1000);
+        for (int i = 0; i < 999; i++) {
+            customArrayList1.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList2 = new CustomArrayList(100000);
+        for (int i = 0; i < 99999; i++) {
+            customArrayList2.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList3 = new CustomArrayList(1000000);
+        for (int i = 0; i < 999999; i++) {
+            customArrayList3.add(String.valueOf(i));
+        }
+        customArrayList2.remove(String.valueOf(99999));
     }
 
     @Benchmark
-    public void removeElement60() {
-        CustomArrayList customArrayList1 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20});
-        CustomArrayList customArrayList2 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40});
-        CustomArrayList customArrayList3 = new CustomArrayList<Integer>(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60});
-        customArrayList3.remove(new Integer(60));
+    public void removeElement1000000() {
+        CustomArrayList<String> customArrayList1 = new CustomArrayList(1000);
+        for (int i = 0; i < 999; i++) {
+            customArrayList1.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList2 = new CustomArrayList(100000);
+        for (int i = 0; i < 99999; i++) {
+            customArrayList2.add(String.valueOf(i));
+        }
+        CustomArrayList<String> customArrayList3 = new CustomArrayList(1000000);
+        for (int i = 0; i < 999999; i++) {
+            customArrayList3.add(String.valueOf(i));
+        }
+        customArrayList3.remove(String.valueOf(999999));
     }
 }
