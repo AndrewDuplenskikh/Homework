@@ -26,7 +26,7 @@ public class Company implements IdealCompany{
     @Override
     public void removeEmployee(AbstractWorker worker) {
         if (!isPersonBelongsStaff(worker)) {
-            throw new PersonBelongsStaffException("This person is out of staff!");
+            throw new WorkerNotFoundException("This person is out of staff!");
         }
         AbstractWorker[] newStaff = new AbstractWorker[staff.length - 1];
         int newStaffIndex = 0;
