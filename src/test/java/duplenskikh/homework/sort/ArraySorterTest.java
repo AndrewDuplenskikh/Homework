@@ -7,21 +7,6 @@ import java.util.Random;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ArraySorterTest {
-    private ArraySorter filledArraySorter() {
-        int[] array = new int[10];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (new Random().nextInt(100));
-        }
-        ArraySorter arraySorter = new ArraySorter(array);
-        return arraySorter;
-    }
-
-    private void eachPreviousElementShouldBeLessThanNextElement(int[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            assertThat(array[i] <= array[i + 1]).isEqualTo(true);
-        }
-    }
-
     @Test
     void bubbleSortingShouldSortArrayIntoAscendingOrder() {
         ArraySorter arraySorter = filledArraySorter();
@@ -41,5 +26,19 @@ class ArraySorterTest {
         ArraySorter arraySorter = filledArraySorter();
         int[] sortedArray = arraySorter.selectSort();
         eachPreviousElementShouldBeLessThanNextElement(sortedArray);
+    }
+
+    private ArraySorter filledArraySorter() {
+        int[] array = new int[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = (new Random().nextInt(100));
+        }
+        return new ArraySorter(array);
+    }
+
+    private void eachPreviousElementShouldBeLessThanNextElement(int[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            assertThat(array[i] <= array[i + 1]).isEqualTo(true);
+        }
     }
 }

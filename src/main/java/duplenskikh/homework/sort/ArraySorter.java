@@ -1,12 +1,13 @@
 package duplenskikh.homework.sort;
 
-public class ArraySorter implements SimpleSortings {
-    private int[] array;
+public class ArraySorter implements SimpleSorting {
+    private final int[] array;
 
     public ArraySorter(int[] array) {
         this.array = array;
     }
 
+    @Override
     public int[] bubbleSort() {
         int[] sortedArray = arrayCopy();
         for (int i = sortedArray.length - 1; i > 1; i--) {
@@ -19,6 +20,7 @@ public class ArraySorter implements SimpleSortings {
         return sortedArray;
     }
 
+    @Override
     public int[] insertSort() {
         int[] sortedArray = arrayCopy();
         for (int i = 1; i < sortedArray.length; i++) {
@@ -33,6 +35,7 @@ public class ArraySorter implements SimpleSortings {
         return sortedArray;
     }
 
+    @Override
     public int[] selectSort() {
         int[] sortedArray = arrayCopy();
         int minimal;

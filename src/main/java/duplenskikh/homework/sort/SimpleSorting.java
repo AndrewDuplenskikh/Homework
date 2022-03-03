@@ -1,13 +1,13 @@
 package duplenskikh.homework.sort;
 
-public interface SimpleSortings {
+public interface SimpleSorting {
     /**
      * Replaces each element of array into ascending order.
      * Method should be defined by using algorithm called bubble sorting.
      *
      * @return sorted array of integers.
      */
-    public int[] bubbleSort();
+    int[] bubbleSort();
 
     /**
      * Replaces each element of array into ascending order.
@@ -15,7 +15,7 @@ public interface SimpleSortings {
      *
      * @return sorted array of integers.
      */
-    public int[] insertSort();
+    int[] insertSort();
 
     /**
      * Replaces each element of array into ascending order.
@@ -23,5 +23,5 @@ public interface SimpleSortings {
      *
      * @return sorted array of integers.
      */
-    public int[] selectSort();
+    int[] selectSort();
 }
