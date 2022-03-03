@@ -13,7 +13,7 @@ public interface Stackable<T> {
      *
      * @return количество элементов в стеке.
      */
-    public int size();
+    int size();
 
     /**
      * Добавляет элемент в стек.
@@ -21,7 +21,7 @@ public interface Stackable<T> {
      * @param t тип вставляемого элемента.
      * @throws CapacityException в случае, когда хранилище переполнено.
      */
-    public void push(T t) throws CapacityException;
+    void push(T t) throws CapacityException;
 
     /**
      * Возвращает и удаляет (посредством ограничения доступа) последний
@@ -30,7 +30,7 @@ public interface Stackable<T> {
      * @return последний добавленный элемент.
      * @throws CapacityException в случае, когда хранилище пустое.
      */
-    public T pop() throws CapacityException;
+    T pop() throws CapacityException;
 
     /**
      * Возвращает, но не удаляет, последний добавленный элемент. Не
@@ -39,5 +39,5 @@ public interface Stackable<T> {
      * @return последний добавленный элемент.
      * @throws CapacityException в случае, когда хранилище пустое.
      */
-    public T peek() throws CapacityException;
+    T peek() throws CapacityException;
 }

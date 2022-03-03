@@ -9,7 +9,7 @@ public class CustomQueue<T> implements Queue<T> {
     private int front;
     private int rear;
     private int elementsCount;
-    private T[] array;
+    private final T[] array;
 
     private static final int INITIAL_FRONT_POSITION = 0;
     private static final int INITIAL_REAR_POSITION = -1;
@@ -32,10 +32,6 @@ public class CustomQueue<T> implements Queue<T> {
     @Override
     public boolean isEmpty() {
         return elementsCount == 0;
-    }
-
-    private boolean isFull() {
-        return elementsCount == array.length;
     }
 
     @Override
@@ -70,6 +66,10 @@ public class CustomQueue<T> implements Queue<T> {
             throw new NoSuchElementException(EMPTY_ERROR_MESSAGE);
         }
         return array[front];
+    }
+
+    private boolean isFull() {
+        return elementsCount == array.length;
     }
 
     //region заглушки для не реализованных методов

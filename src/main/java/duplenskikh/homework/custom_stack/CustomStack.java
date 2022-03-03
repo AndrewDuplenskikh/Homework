@@ -2,7 +2,7 @@ package duplenskikh.homework.custom_stack;
 
 public class CustomStack<T> implements Stackable<T> {
     private int top;
-    private T[] array;
+    private final T[] array;
 
     private static final int INITIAL_TOP_POSITION = -1;
     private static final int SIZE_CORRECTION = 1;
@@ -50,6 +50,4 @@ public class CustomStack<T> implements Stackable<T> {
     private boolean isFull() {
         return top == array.length - SIZE_CORRECTION;
     }
-
-
 }

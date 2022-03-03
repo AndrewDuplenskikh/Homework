@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class CustomStackTest {
-    private CustomStack<String> stack = new CustomStack(10);
+    private final CustomStack<String> stack = new CustomStack(10);
 
     @Test
     void emptyStackSizeShouldBeZero() {
@@ -30,9 +30,7 @@ class CustomStackTest {
         for (int i = 0; i < 10; i++) {
             stack.push(String.format("element %d", i));
         }
-        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> {
-            stack.push("extra");
-        });
+        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> stack.push("extra"));
     }
 
     @Test
@@ -44,15 +42,11 @@ class CustomStackTest {
 
     @Test
     void peekingEmptyStackShouldThrowCapacityException() {
-        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> {
-            stack.peek();
-        });
+        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> stack.peek());
     }
 
     @Test
     void removingFromEmptyStackShouldThrowCapacityException() {
-        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> {
-            stack.pop();
-        });
+        assertThatExceptionOfType(CapacityException.class).isThrownBy(() -> stack.pop());
     }
 }

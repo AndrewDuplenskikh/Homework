@@ -7,7 +7,7 @@ import java.util.NoSuchElementException;
 import static org.assertj.core.api.Assertions.*;
 
 class CustomQueueTest {
-    private CustomQueue<String> queue = new CustomQueue(10);
+    private final CustomQueue<String> queue = new CustomQueue(10);
 
     @Test
     void emptyQueueSizeShouldBeZero() {
@@ -32,9 +32,7 @@ class CustomQueueTest {
         for (int i = 0; i < 10; i++) {
             queue.add(String.format("element %d", i));
         }
-        assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> {
-            queue.add("extra");
-        });
+        assertThatExceptionOfType(IllegalStateException.class).isThrownBy(() -> queue.add("extra"));
     }
 
     @Test
@@ -46,15 +44,11 @@ class CustomQueueTest {
 
     @Test
     void peekingEmptyQueueShouldThrowNoSuchElementException() {
-        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(() -> {
-            queue.peek();
-        });
+        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(() -> queue.peek());
     }
 
     @Test
     void removingFromEmptyQueueShouldThrowCapacityException() {
-        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(() -> {
-            queue.remove();
-        });
+        assertThatExceptionOfType(NoSuchElementException.class).isThrownBy(() -> queue.remove());
     }
 }
