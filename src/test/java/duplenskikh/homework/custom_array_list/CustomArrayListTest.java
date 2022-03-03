@@ -62,9 +62,7 @@ class CustomArrayListTest {
     void addingByWrongIndexShouldThrowIndexOutOfBoundsException() {
         CustomArrayList<String> customArrayList = new CustomArrayList<>(new String[]{"first"});
         String string = "third";
-        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
-            customArrayList.add(2, string);
-        });
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> customArrayList.add(2, string));
     }
 
     @Test
@@ -94,9 +92,7 @@ class CustomArrayListTest {
         CustomArrayList<String> customArrayList = new CustomArrayList<>();
         String string = "message";
         customArrayList.add(string);
-        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> {
-            customArrayList.remove(1);
-        });
+        assertThatExceptionOfType(IndexOutOfBoundsException.class).isThrownBy(() -> customArrayList.remove(1));
     }
 
     @Test
