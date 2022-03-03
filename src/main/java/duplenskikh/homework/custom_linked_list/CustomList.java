@@ -1,7 +1,5 @@
 package duplenskikh.homework.custom_linked_list;
 
-import java.util.NoSuchElementException;
-
 public interface CustomList<E> {
     /**
      * Добавляет новый элемент в список после элемента, указанного в
