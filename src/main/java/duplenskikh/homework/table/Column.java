@@ -1,23 +1,19 @@
 package duplenskikh.homework.table;
 
-public class Column<T extends Comparable<T>> {
-    public String title;
-    public T data;
+public class Column {
+    private final String title;
+    private final Class<? extends Comparable<?>> className;
 
-    public Column(String title) {
+    public Column(String title, Class<? extends Comparable<?>> className) {
         this.title = title;
+        this.className = className;
     }
 
-    public Column(String title, T data) {
-        this.title = title;
-        this.data = data;
+    public Class<? extends Comparable<?>> getDataClass() {
+        return className;
     }
 
-    public void setData(T data) {
-        this.data = data;
-    }
-
-    public Class<? extends Comparable> getDataClass() {
-        return data.getClass();
+    public String getTitle() {
+        return title;
     }
 }

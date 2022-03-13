@@ -3,37 +3,54 @@ package duplenskikh.homework.table;
 import java.util.ArrayList;
 
 public class Table<T extends Comparable<T>> {
-    private ArrayList<Column<? extends Comparable<?>>> header;
-    private ArrayList<Line<? extends Comparable<?>>> lines;
-    private int width;
-    private int height;
+    private final ArrayList<Column> header;
+    private final ArrayList<Line<? extends Comparable<?>>> lines;
 
     public Table(int width, int height) {
-        this.width = width;
-        this.height = height;
         header = new ArrayList<>(width);
         lines = new ArrayList<>(height);
-        lines.forEach(line -> line = new Line<>(width));
+        for (int i = 0; i < height; i++) {
+            lines.add(new Line<>(width));
+        }
     }
 
-    public void addColumn(Column<? extends Comparable<?>> column) {
+    public void addColumn(Column column) {
+        header.add(column);
         lines.forEach(line -> line.addCell(null));
-        width++;
     }
 
     public void addLine() {
-        lines.add(new Line<>(width));
-        height++;
+        lines.add(new Line<>(header.size()));
     }
 
-    public void setCellValue(int columnNumber, int lineNumber, Comparable<? extends Comparable<?>> data) {
-        if (!getColumn(columnNumber).getDataClass().equals(data.getClass())) {
+    public void setCellValue(int columnIndex, int lineIndex, Comparable<? extends Comparable<?>> data) {
+        if (!getColumnClass(columnIndex).equals(data.getClass())) {
             throw new IllegalArgumentException("Wrong argument type for this column!");
         }
-        lines.get(lineNumber).setCellValue(columnNumber, data);
+        Line<? extends Comparable<?>> line = lines.get(lineIndex);
+        line.setColumnValue(columnIndex, data);
     }
 
-    private Column<? extends Comparable<?>> getColumn(int index) {
-        return header.get(index);
+    public Comparable<?> getCellValue(int columnIndex, int lineIndex) {
+        Line<? extends Comparable<?>> line = lines.get(lineIndex);
+        return line.getColumnValue(columnIndex);
+    }
+
+    public Comparable<?> removeCellValue(int columnIndex, int lineIndex) {
+        Line<? extends Comparable<?>> line = lines.get(lineIndex);
+        return line.removeColumnValue(columnIndex);
+    }
+
+    public int getWidth() {
+        return header.size();
+    }
+
+    public int getHeight() {
+        return lines.size();
+    }
+
+    private Class<? extends Comparable<?>> getColumnClass(int index) {
+        Column column = header.get(index);
+        return column.getDataClass();
     }
 }

@@ -3,9 +3,9 @@ package duplenskikh.homework.table;
 import java.util.ArrayList;
 
 public class Line<T extends Comparable<T>> {
-    static int count = 0;
-    int id;
-    public ArrayList<Comparable<?>> cells;
+    private static int count = 0;
+    private final int id;
+    private final ArrayList<Comparable<?>> cells;
 
     public Line(int length) {
         this.cells = new ArrayList<>(length);
@@ -16,7 +16,19 @@ public class Line<T extends Comparable<T>> {
         cells.add(data);
     }
 
-    public void setCellValue(int columnNumber, Comparable<? extends Comparable<?>> data) {
-        cells.set(columnNumber, data);
+    public void setColumnValue(int columnIndex, Comparable<? extends Comparable<?>> data) {
+        cells.set(columnIndex, data);
+    }
+
+    public Comparable<?> removeColumnValue(int columnIndex) {
+        return cells.set(columnIndex, null);
+    }
+
+    public Comparable<?> getColumnValue(int columnIndex) {
+        return cells.get(columnIndex);
+    }
+
+    public int getId() {
+        return id;
     }
 }
